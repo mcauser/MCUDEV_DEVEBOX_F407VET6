@@ -1,9 +1,7 @@
-#define MCUDEV_F407VE
-
-#define MICROPY_HW_BOARD_NAME       "MCUDEV STM32F407VE"
+#define MICROPY_HW_BOARD_NAME       "MCUDEV DEVEBOX STM32F407VE"
 #define MICROPY_HW_MCU_NAME         "STM32F407VE"
 
-#define MICROPY_HW_HAS_SWITCH       (1)		// has 1 buttons KEY0
+#define MICROPY_HW_HAS_SWITCH       (1)		// has 1 button KEY0
 #define MICROPY_HW_HAS_FLASH        (1)
 #define MICROPY_HW_ENABLE_RNG       (1)
 #define MICROPY_HW_ENABLE_RTC       (1)
