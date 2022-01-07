@@ -4,7 +4,8 @@
 
 // 1 = use internal flash (512 KByte)
 // 0 = use onboard SPI flash (2 MByte) Winbond W25Q16
-#define MICROPY_HW_ENABLE_INTERNAL_FLASH_STORAGE (1)
+#define MICROPY_HW_ENABLE_INTERNAL_FLASH_STORAGE (0)
+#define MICROPY_HW_SPIFLASH_ENABLE_CACHE (1) // see: spiflash.h symbol: _mp_spiflash_cache_t
 
 #define MICROPY_HW_HAS_SWITCH       (1)		// has 1 button KEY0
 #define MICROPY_HW_HAS_FLASH        (1)
@@ -12,7 +13,14 @@
 #define MICROPY_HW_ENABLE_RTC       (1)
 #define MICROPY_HW_ENABLE_DAC       (1)
 #define MICROPY_HW_ENABLE_USB       (1)
-#define MICROPY_HW_ENABLE_SDCARD    (0)		// it has a sd scard, but i am not sure what the detect pin is, yet
+
+#define MICROPY_HW_ENABLE_SDCARD    (1)		// it has a sd scard without detect pin is, it is working without them
+#define MICROPY_HW_SDCARD_D0 (pin_C8)
+#define MICROPY_HW_SDCARD_D1 (pin_C9)
+#define MICROPY_HW_SDCARD_D2 (pin_C10)
+#define MICROPY_HW_SDCARD_D3 (pin_C11)
+#define MICROPY_HW_SDCARD_CK (pin_C12)
+#define MICROPY_HW_SDCARD_CMD (pin_D2)
 
 // HSE is 8MHz
 #define MICROPY_HW_CLK_PLLM (8) // divide external clock by this to get 1MHz
@@ -60,6 +68,9 @@
 #define MICROPY_HW_I2C2_SCL (pin_B10) // PB10
 #define MICROPY_HW_I2C2_SDA (pin_B11) // PB11
 
+#define MICROPY_HW_I2C3_SCL (pin_A8)  // PA8
+#define MICROPY_HW_I2C3_SDA (pin_C9) // PC9
+
 // I2S busses
 // I2S2_CK  PB13
 // I2S2_MCK PC6
@@ -95,14 +106,16 @@
 // DAC_OUT2 PA5
 
 // KEY0 has no pullup or pulldown; Pressing the button makes the input go high.
-#define MICROPY_HW_USRSW_PIN        (pin_A0)
+#define MICROPY_HW_USRSW_PIN        (pin_E4)
 #define MICROPY_HW_USRSW_PULL       (GPIO_PULLDOWN)
 #define MICROPY_HW_USRSW_EXTI_MODE  (GPIO_MODE_IT_RISING)
 #define MICROPY_HW_USRSW_PRESSED    (0)
 
 // LEDs
 // LED D1 is the power LED and always on
-#define MICROPY_HW_LED1             (pin_A1)  // LED D2
+#define MICROPY_HW_LED1             (pin_A6)  // LED D1
+#define MICROPY_HW_LED2             (pin_A7)  // LED D2
+#define MICROPY_HW_LED_INVERTED     (1) //  see: led.h
 #define MICROPY_HW_LED_ON(pin)      (mp_hal_pin_low(pin))
 #define MICROPY_HW_LED_OFF(pin)     (mp_hal_pin_high(pin))
 
@@ -111,7 +124,7 @@
 
 // Winbond W25Q16 SPI Flash = 16 Mbit (2 MByte)
 #define MICROPY_HW_SPIFLASH_SIZE_BITS (16 * 1024 * 1024)
-#define MICROPY_HW_SPIFLASH_CS      (pin_A15)
+#define MICROPY_HW_SPIFLASH_CS      (pin_B0)
 #define MICROPY_HW_SPIFLASH_SCK     (pin_B3)
 #define MICROPY_HW_SPIFLASH_MISO    (pin_B4)
 #define MICROPY_HW_SPIFLASH_MOSI    (pin_B5)
